@@ -1,4 +1,4 @@
-package com.task.stockmanagment.ui.components
+package com.task.stockmanagement.ui.components
 
 import android.widget.Toast
 import androidx.compose.animation.animateColorAsState
@@ -24,13 +24,13 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.task.stockmanagment.data.model.Stock
+import com.task.stockmanagement.data.model.Stock
 
 @Composable
 fun StockCard(stock: Stock, index: Int) {
+
     val context = LocalContext.current
     var isPressed by remember { mutableStateOf(false) }
-
     val containerColor by animateColorAsState(
         if (isPressed) Color.LightGray else MaterialTheme.colorScheme.surface, label = ""
     )

@@ -1,6 +1,6 @@
-package com.task.stockmanagment.data.network
+package com.task.stockmanagement.data.network
 
-import com.task.stockmanagment.data.model.Stock
+import com.task.stockmanagement.data.model.Stock
 import retrofit2.http.GET
 import retrofit2.http.Query
 

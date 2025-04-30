@@ -1,7 +1,7 @@
-package com.task.stockmanagment
+package com.task.stockmanagement
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class StockManagmentApplication: Application()
+class StockManagementApplication: Application()

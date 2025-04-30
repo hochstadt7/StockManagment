@@ -1,4 +1,4 @@
-package com.task.stockmanagment.ui.screens
+package com.task.stockmanagement.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
@@ -17,8 +17,8 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.task.stockmanagment.ui.components.StockCard
-import com.task.stockmanagment.viewmodel.StockViewModel
+import com.task.stockmanagement.ui.components.StockCard
+import com.task.stockmanagement.viewmodel.StockViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -26,7 +26,7 @@ fun StockScreen(viewModel: StockViewModel = hiltViewModel()) {
     val stocks = viewModel.stockList
     val isLoading = viewModel.isLoading
     val error = viewModel.errorMessage
-    val suggestions = viewModel.suggestions
+    val suggestions = viewModel.options
     var expanded by remember { mutableStateOf(false) }
 
     Column(Modifier.fillMaxSize().padding(16.dp)) {

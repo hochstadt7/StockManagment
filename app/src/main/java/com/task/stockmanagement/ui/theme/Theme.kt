@@ -1,4 +1,4 @@
-package com.task.stockmanagment.ui.theme
+package com.task.stockmanagement.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

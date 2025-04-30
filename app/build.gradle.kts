@@ -13,11 +13,11 @@ plugins {
 }
 
 android {
-    namespace = "com.task.stockmanagment"
+    namespace = "com.task.stockmanagement"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.task.stockmanagment"
+        applicationId = "com.task.stockmanagement"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

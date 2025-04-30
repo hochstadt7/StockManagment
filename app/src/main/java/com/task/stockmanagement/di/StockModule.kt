@@ -1,7 +1,7 @@
-package com.task.stockmanagment.di
+package com.task.stockmanagement.di
 
-import com.task.stockmanagment.data.repository.StockRepository
-import com.task.stockmanagment.data.network.StockApi
+import com.task.stockmanagement.data.repository.StockRepository
+import com.task.stockmanagement.data.network.StockApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

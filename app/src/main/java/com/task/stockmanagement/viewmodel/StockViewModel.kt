@@ -1,12 +1,12 @@
-package com.task.stockmanagment.viewmodel
+package com.task.stockmanagement.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.task.stockmanagment.data.model.Stock
-import com.task.stockmanagment.data.repository.StockRepository
+import com.task.stockmanagement.data.model.Stock
+import com.task.stockmanagement.data.repository.StockRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -24,8 +24,8 @@ class StockViewModel @Inject constructor(
     var stockList by mutableStateOf<List<Stock>>(emptyList())
         private set
 
-    // the temporary autocomplete suggestions shown in the dropdown while the user types
-    var suggestions by mutableStateOf<List<Stock>>(emptyList())
+    // the temporary autocomplete options shown in the dropdown while the user types
+    var options by mutableStateOf<List<Stock>>(emptyList())
         private set
 
     var isLoading by mutableStateOf(false)
@@ -44,7 +44,7 @@ class StockViewModel @Inject constructor(
         searchJob?.cancel() // if there was a previous debounce coroutine running, cancel it
         searchJob = viewModelScope.launch {
             delay(300) // debounce duration
-            suggestions = if (newQuery.isNotBlank()) {
+            options = if (newQuery.isNotBlank()) {
                 try {
                     withContext(Dispatchers.IO) {
                         repository.fetchStocks(newQuery)
@@ -62,7 +62,7 @@ class StockViewModel @Inject constructor(
     fun loadSuggestions(stock: Stock) {
         searchQuery = stock.value
         loadStocks(stock.value)
-        suggestions = emptyList()
+        options = emptyList()
     }
 
     fun loadStocks(query: String) {

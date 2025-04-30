@@ -1,4 +1,4 @@
-package com.task.stockmanagment.data.model
+package com.task.stockmanagement.data.model
 
 data class Stock(
     val label: String,

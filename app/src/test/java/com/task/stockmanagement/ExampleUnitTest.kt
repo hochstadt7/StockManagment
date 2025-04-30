@@ -1,4 +1,4 @@
-package com.task.stockmanagment
+package com.task.stockmanagement
 
 import org.junit.Test
 
