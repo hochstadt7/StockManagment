@@ -14,6 +14,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.cancellation.CancellationException
 
 @HiltViewModel
 class StockViewModel @Inject constructor(
@@ -50,6 +51,7 @@ class StockViewModel @Inject constructor(
                         repository.fetchStocks(newQuery)
                     }
                 } catch (e: Exception) {
+                    if (e is CancellationException) throw e // propagate it properly
                     errorMessage = e.localizedMessage ?: "Unknown error"
                     emptyList()
                 }
