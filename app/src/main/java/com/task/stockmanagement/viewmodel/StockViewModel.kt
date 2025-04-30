@@ -38,12 +38,12 @@ class StockViewModel @Inject constructor(
     var searchQuery by mutableStateOf("")
         private set
 
-    private var searchJob: Job? = null
+    private var queryJob: Job? = null
 
     fun onSearchQueryChanged(newQuery: String) {
         searchQuery = newQuery
-        searchJob?.cancel() // if there was a previous debounce coroutine running, cancel it
-        searchJob = viewModelScope.launch {
+        queryJob?.cancel() // if there was a previous debounce coroutine running, cancel it
+        queryJob = viewModelScope.launch {
             delay(300) // debounce duration
             options = if (newQuery.isNotBlank()) {
                 try {
@@ -61,7 +61,7 @@ class StockViewModel @Inject constructor(
         }
     }
 
-    fun loadSuggestions(stock: Stock) {
+    fun loadOptions(stock: Stock) {
         searchQuery = stock.value
         loadStocks(stock.value)
         options = emptyList()

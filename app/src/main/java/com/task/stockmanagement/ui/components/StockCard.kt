@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.task.stockmanagement.data.model.Stock
 
@@ -58,8 +57,10 @@ fun StockCard(stock: Stock, index: Int) {
     ) {
         Column(Modifier.padding(8.dp)) {
             Text("Label: ${stock.label}")
+            Text("Value: ${stock.value}")
+            Text("Category: ${stock.category}")
             Row {
-                Text("UID: ", fontWeight = FontWeight.Bold)
+                Text("UID: ")
                 Text(
                     text = stock.uid,
                     color = MaterialTheme.colorScheme.primary,
@@ -69,8 +70,6 @@ fun StockCard(stock: Stock, index: Int) {
                         }
                 )
             }
-            Text("Value: ${stock.value}")
-            Text("Category: ${stock.category}")
         }
     }
 }

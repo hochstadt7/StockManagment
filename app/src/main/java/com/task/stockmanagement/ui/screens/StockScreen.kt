@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.task.stockmanagement.ui.components.StockCard
 import com.task.stockmanagement.viewmodel.StockViewModel
+import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -26,12 +27,12 @@ fun StockScreen(viewModel: StockViewModel = hiltViewModel()) {
     val stocks = viewModel.stockList
     val isLoading = viewModel.isLoading
     val error = viewModel.errorMessage
-    val suggestions = viewModel.options
+    val options = viewModel.options
     var expanded by remember { mutableStateOf(false) }
 
     Column(Modifier.fillMaxSize().padding(WindowInsets.systemBars.asPaddingValues())) {
         ExposedDropdownMenuBox(
-            expanded = expanded && suggestions.isNotEmpty(),
+            expanded = expanded && options.isNotEmpty(),
             onExpandedChange = { expanded = it }
         ) {
             StaticLabelTextField(
@@ -49,15 +50,15 @@ fun StockScreen(viewModel: StockViewModel = hiltViewModel()) {
             )
 
             ExposedDropdownMenu(
-                expanded = expanded && suggestions.isNotEmpty(),
+                expanded = expanded && options.isNotEmpty(),
                 onDismissRequest = { expanded = false }
             ) {
-                suggestions.forEach { stock ->
+                options.forEach { stock ->
                     DropdownMenuItem(
                         text = { Text(stock.label) },
                         onClick = {
                             expanded = false
-                            viewModel.loadSuggestions(stock)
+                            viewModel.loadOptions(stock)
                         }
                     )
                 }
@@ -69,6 +70,7 @@ fun StockScreen(viewModel: StockViewModel = hiltViewModel()) {
         if (isLoading) {
             CircularProgressIndicator(Modifier.align(Alignment.CenterHorizontally))
         } else if (error != null) {
+            Timber.d("Error: $error")
             Text("Error: $error", color = Color.Red)
         } else {
             LazyVerticalGrid(

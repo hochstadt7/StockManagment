@@ -67,16 +67,12 @@ dependencies {
 
     // Dagger - Hilt
     implementation(libs.hilt.android)
-    ksp(libs.dagger.compiler)
     ksp(libs.hilt.compiler)
-    ksp(libs.hilt.android.compiler)
 
     // Retrofit + Gson
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.converter.gson)
 
-    // Navigation
-    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.androidx.ui)
