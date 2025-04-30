@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.task.stockmanagement.ui.components.StockCard
 import com.task.stockmanagement.viewmodel.StockViewModel
+import kotlinx.coroutines.delay
 import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,6 +30,14 @@ fun StockScreen(viewModel: StockViewModel = hiltViewModel()) {
     val error = viewModel.errorMessage
     val options = viewModel.options
     var expanded by remember { mutableStateOf(false) }
+
+    val clickEnabled = remember { mutableStateOf(true) }
+    val cooldownId = remember { mutableIntStateOf(0) }
+
+    LaunchedEffect(cooldownId.intValue) {
+        delay(1500)
+        clickEnabled.value = true
+    }
 
     Column(Modifier.fillMaxSize().padding(WindowInsets.systemBars.asPaddingValues())) {
         ExposedDropdownMenuBox(
@@ -80,7 +89,7 @@ fun StockScreen(viewModel: StockViewModel = hiltViewModel()) {
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 itemsIndexed(stocks) { index, stock ->
-                    StockCard(stock, index)
+                    StockCard(stock, index, clickEnabled, cooldownId)
                 }
             }
         }
