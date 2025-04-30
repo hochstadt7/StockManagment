@@ -29,7 +29,7 @@ fun StockScreen(viewModel: StockViewModel = hiltViewModel()) {
     val suggestions = viewModel.options
     var expanded by remember { mutableStateOf(false) }
 
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
+    Column(Modifier.fillMaxSize().padding(WindowInsets.systemBars.asPaddingValues())) {
         ExposedDropdownMenuBox(
             expanded = expanded && suggestions.isNotEmpty(),
             onExpandedChange = { expanded = it }
