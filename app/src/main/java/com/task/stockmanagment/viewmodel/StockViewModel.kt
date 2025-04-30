@@ -65,7 +65,7 @@ class StockViewModel @Inject constructor(
         suggestions = emptyList()
     }
 
-    private fun loadStocks(query: String) {
+    fun loadStocks(query: String) {
         viewModelScope.launch {
             isLoading = true
             errorMessage = null

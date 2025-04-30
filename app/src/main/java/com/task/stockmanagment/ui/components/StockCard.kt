@@ -7,6 +7,7 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -37,7 +38,7 @@ fun StockCard(stock: Stock, index: Int) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            //.height(220.dp) // make it scrollable instead?
+            .height(250.dp) // should be enough
             .pointerInput(Unit) {
                 detectTapGestures(
                     onLongPress = {
